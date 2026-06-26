@@ -1,0 +1,32 @@
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    container_name: n8n
+
+    restart: always
+
+    ports:
+      - "5678:5678"
+
+    environment:
+      - GENERIC_TIMEZONE=Asia/Manila
+      - TZ=Asia/Manila
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+  python-worker:
+    build: ./python-worker
+    container_name: python-worker
+
+    restart: always
+
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - ./python-worker:/app
+
+volumes:
+  n8n_data:

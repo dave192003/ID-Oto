@@ -1,0 +1,23 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment files
+.env
+
+# n8n local data
+n8n_data/
+
+# Python virtual env
+venv/
+.venv/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Model downloads (important kung rembg nag-download)
+*.onnx
+
+# Docker temp
+*.log
