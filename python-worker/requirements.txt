@@ -2,3 +2,5 @@ flask
 rembg
 pillow
 onnxruntime
+numpy
+opencv-python-headless

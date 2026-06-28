@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ID Photo Processor</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial, sans-serif;
+    }
+
+    body{
+        background:#0f172a;
+        color:white;
+        min-height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:40px;
+    }
+
+    .container{
+        width:900px;
+        background:#1e293b;
+        padding:30px;
+        border-radius:20px;
+        box-shadow:0 10px 30px rgba(0,0,0,.3);
+    }
+
+    h1{
+        text-align:center;
+        margin-bottom:25px;
+    }
+
+    .upload-box{
+        border:2px dashed #64748b;
+        padding:40px;
+        text-align:center;
+        border-radius:15px;
+        cursor:pointer;
+        transition:.3s;
+    }
+
+    .upload-box:hover{
+        border-color:#3b82f6;
+    }
+
+    input{
+        display:none;
+    }
+
+    .preview-section{
+        margin-top:30px;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:20px;
+    }
+
+    .card{
+        background:#334155;
+        padding:15px;
+        border-radius:15px;
+    }
+
+    .card h3{
+        margin-bottom:15px;
+        text-align:center;
+    }
+
+    img{
+        width:100%;
+        height:350px;
+        object-fit:contain;
+        border-radius:10px;
+        background:#0f172a;
+    }
+
+    .buttons{
+        display:flex;
+        gap:15px;
+        margin-top:25px;
+    }
+
+    button{
+        flex:1;
+        padding:14px;
+        border:none;
+        border-radius:10px;
+        cursor:pointer;
+        font-size:16px;
+        transition:.3s;
+    }
+
+    .process{
+        background:#2563eb;
+        color:white;
+    }
+
+    .download{
+        background:#16a34a;
+        color:white;
+    }
+
+    button:hover{
+        opacity:.9;
+    }
+
+    .loading{
+        margin-top:20px;
+        text-align:center;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>ID Photo Processor</h1>
+
+    <label class="upload-box" for="fileInput">
+        Click to Upload Image
+    </label>
+
+    <input type="file" id="fileInput" accept="image/*">
+
+    <div class="preview-section">
+
+        <div class="card">
+            <h3>Original</h3>
+            <img id="originalPreview">
+        </div>
+
+        <div class="card">
+            <h3>Processed</h3>
+            <img id="outputPreview">
+        </div>
+
+    </div>
+
+    <div class="buttons">
+        <button class="process" onclick="processImage()">
+            Process Image
+        </button>
+
+        <button class="download" onclick="downloadImage()">
+            Download
+        </button>
+    </div>
+
+    <div class="loading" id="status"></div>
+
+</div>
+
+<script>
+
+let selectedFile = null;
+let processedBlob = null;
+
+const input = document.getElementById("fileInput");
+
+input.addEventListener("change", (e) => {
+
+    selectedFile = e.target.files[0];
+
+    const url = URL.createObjectURL(selectedFile);
+
+    document.getElementById(
+        "originalPreview"
+    ).src = url;
+});
+
+
+async function processImage(){
+
+    if(!selectedFile){
+        alert("Upload image first");
+        return;
+    }
+
+    const status =
+        document.getElementById("status");
+
+    status.innerText = "Processing image...";
+
+    const formData =
+        new FormData();
+
+    // field name dapat match sa n8n webhook
+    formData.append(
+        "image",
+        selectedFile
+    );
+
+    try{
+
+        const response =
+            await fetch(
+                "http://localhost:5678/webhook-test/id-upload",
+                {
+                    method:"POST",
+                    body:formData
+                }
+            );
+
+        if(!response.ok){
+            throw new Error(
+                "Failed to process image"
+            );
+        }
+
+        processedBlob =
+            await response.blob();
+
+        const finalURL =
+            URL.createObjectURL(
+                processedBlob
+            );
+
+        document.getElementById(
+            "outputPreview"
+        ).src = finalURL;
+
+        status.innerText =
+            "Processing complete";
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        status.innerText =
+            "Something went wrong";
+
+        alert("Error processing image");
+    }
+}
+
+
+function downloadImage(){
+
+    if(!processedBlob){
+        alert("No processed image");
+        return;
+    }
+
+    const url =
+        URL.createObjectURL(
+            processedBlob
+        );
+
+    const a =
+        document.createElement("a");
+
+    a.href = url;
+
+    a.download =
+        "id-photo.png";
+
+    a.click();
+}
+
+</script>
+
+</body>
+</html>
