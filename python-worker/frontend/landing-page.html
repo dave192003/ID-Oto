@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "style.css">
+    <title>ID Photo Processor</title>
+
+   
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Insert a photo</h1>
+
+        <label class="upload-box" for="fileInput">
+            Click to Upload Image
+        </label>
+
+        <input type="file" id="fileInput" accept="image/*">
+
+        <div class="preview-section">
+
+            <div class="card">
+                <h3>Original</h3>
+                <img id="originalPreview">
+            </div>
+
+            <div class="card">
+                <h3>Processed</h3>
+                <img id="outputPreview">
+            </div>
+
+        </div>
+
+        <div id="printSheet" class="print-sheet"></div>
+
+        <div class="size-selector">
+
+            <label>Select ID Size</label>
+
+            <select id="photoSize">
+
+                <option value="1x1">1x1</option>
+                <option value="1.5x1.5">1.5 x 1.5</option>
+                <option value="2x2">2x2</option>
+                <option value="passport">Passport</option>
+
+            </select>
+
+        </div>
+
+        <div class="buttons">
+
+            <button class="process" onclick="processImage()">
+                Process Image
+            </button>
+
+            <button class="download" onclick="downloadImage()">
+                Download
+            </button>
+
+            <button onclick="printPhotos()">
+                Print Photos
+            </button>
+
+        </div>
+
+        <div class="loading" id="status"></div>
+
+    </div>
+    <script src = "script.js"></script>
+</body>
+</html>
