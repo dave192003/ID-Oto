@@ -134,17 +134,42 @@ button {
     padding: 14px;
     border: none;
     cursor: pointer;
+    border-radius: 10px;
     font-size: 16px;
 }
+
+
 
 .process {
     background: #2563eb;
     color: white;
+
+}
+
+.process:hover {
+    background: #88a5e2;
+    color: rgb(20, 20, 20);
+
+
 }
 
 .download {
     background: #16a34a;
-    color: white;
+    color: rgb(255, 250, 250);
+}
+
+.download:hover {
+    background: #3cff0062;
+    color: rgb(2, 2, 2);
+}
+
+.print-button {
+    background: #161817;
+    color: rgb(255, 255, 255);
+}
+
+.print-button:hover {
+    background: #666666;
 }
 
 .size-selector {
@@ -164,6 +189,7 @@ button {
 .loading {
     margin-top: 20px;
     text-align: center;
+
 }
 
 /* PRINT LAYOUT */
@@ -172,6 +198,10 @@ button {
     display: grid;
     grid-template-columns: repeat(2, auto);
     justify-content: center;
+    border: 1px dashed black;
+    padding: 20px;
+    border-radius: 15px;
+    background: #ffffff;
 
 }
 
@@ -184,7 +214,7 @@ button {
 
     .print-sheet {
         background: white;
-        padding: 20px;
+
     }
 
     h1,
