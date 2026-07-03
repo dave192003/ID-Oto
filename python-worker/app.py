@@ -244,38 +244,30 @@ def enhance():
     if "image" not in request.files:
         return "Missing image file", 400
 
-    print("ENHANCE HIT")
-
     file = request.files["image"].read()
 
-    np_img = np.frombuffer(
-        file,
-        np.uint8
-    )
+    np_img = np.frombuffer(file, np.uint8)
 
-    img = cv2.imdecode(
-        np_img,
-        cv2.IMREAD_COLOR
-    )
+    img = cv2.imdecode(np_img, cv2.IMREAD_COLOR)
 
     if img is None:
         return "Invalid image", 400
 
-    # denoise
+    # very light denoise (less plastic/cartoon effect)
     denoised = cv2.fastNlMeansDenoisingColored(
         img,
         None,
-        5,
-        5,
+        2,      # lower
+        2,
         7,
         21
     )
 
-    # sharpen
+    # gentle sharpening
     kernel = np.array([
-        [-1, -1, -1],
-        [-1,  9, -1],
-        [-1, -1, -1]
+        [0, -0.3, 0],
+        [-0.3, 2.2, -0.3],
+        [0, -0.3, 0]
     ])
 
     sharpened = cv2.filter2D(
@@ -284,14 +276,14 @@ def enhance():
         kernel
     )
 
-    # contrast + brightness
+    # slight contrast adjustment only
     enhanced = cv2.convertScaleAbs(
         sharpened,
-        alpha=1.1,
-        beta=8
+        alpha=1.03,
+        beta=2
     )
 
-    # convert to PIL to preserve DPI
+    # preserve DPI
     img_rgb = cv2.cvtColor(enhanced, cv2.COLOR_BGR2RGB)
     pil_img = Image.fromarray(img_rgb)
 
@@ -305,13 +297,10 @@ def enhance():
 
     output.seek(0)
 
-    print("ENHANCE DONE")
-
     return send_file(
         output,
         mimetype="image/png"
     )
-
 
 
 
