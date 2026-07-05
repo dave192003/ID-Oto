@@ -28,6 +28,8 @@ input.addEventListener(
 );
 
 
+
+
 async function processImage() {
 
     if (!selectedFile) {
