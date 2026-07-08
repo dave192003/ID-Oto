@@ -6,13 +6,13 @@
 }
 
 body {
-    background: #dadee0;
+    background: radial-gradient(circle, #ffffff, #3498db);
     color: rgb(12, 12, 12);
     min-height: 100vh;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     gap: 2vw;
     padding: 40px;
 }
@@ -22,18 +22,35 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-
 }
 
+
 .header-section h1 {
-    font-size: 7vw;
+    font-size: 10vw;
+    margin-bottom: -20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .header-section h2 {
-    font-size: 2vw;
+    font-size: 3vw;
+    color: rgba(67, 67, 82, 0.603);
+    padding-bottom: 2rem;
+}
 
+.header-section h3 .make {
+    color: rgb(255, 255, 255);
+    -webkit-text-stroke: 1px rgb(38, 123, 221);
+}
+
+.header-section h3 .easier {
+    color: rgb(0, 101, 253);
+    font-size: 5rem;
+    -webkit-text-stroke: 1px rgb(38, 123, 221);
+}
+
+.header-section h3 {
+    font-size: 2vw;
+    color: rgba(67, 67, 82, 0.603);
 }
 
 .hero-images-container {
@@ -53,20 +70,24 @@ body {
 
 .container {
     width: 1000px;
-    background: #cedadd;
+    background: #eefcff;
     padding: 70px;
     display: flex;
     flex-direction: column;
     border-radius: 20px;
+    border: none;
+
     box-shadow:
-        10px 20px 20px #5e5b5b48,
-        -10px -10px 25px #ffffff;
+        0 4px 8px rgba(0, 0, 0, 0.04),
+        0 12px 24px rgba(0, 0, 0, 0.06),
+        0 24px 48px rgba(0, 0, 0, 0.08);
 }
 
 h1 {
     text-align: center;
     margin-bottom: 25px;
     font-size: 3rem;
+    color: rgb(11, 11, 92);
 }
 
 .upload-box {
@@ -80,10 +101,13 @@ h1 {
     align-items: center;
     width: 30%;
     font-size: 20px;
-    box-shadow:
-        10px 20px 20px #5e5b5b48,
-        -10px -10px 25px #ffffff;
+    background: rgb(0, 129, 214);
     height: 1rem;
+    color: white;
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.164),
+        0 12px 20px rgba(0, 0, 0, 0.192),
+        0 24px 48px rgba(0, 0, 0, 0.13);
 
 }
 
@@ -100,15 +124,13 @@ input {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 50px;
+
 }
 
 .card {
     background: #cedadd;
     padding: 15px;
     border-radius: 15px;
-    box-shadow:
-        10px 20px 20px #5e5b5b48,
-        -10px -10px 25px #ffffff;
 }
 
 .card h3 {
@@ -198,7 +220,6 @@ button {
     display: grid;
     grid-template-columns: repeat(2, auto);
     justify-content: center;
-    border: 1px dashed black;
     padding: 20px;
     border-radius: 15px;
     background: #ffffff;
