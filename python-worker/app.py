@@ -43,9 +43,7 @@ def home():
     return "Python worker running"
 
 
-# ==========================
-# REMOVE BACKGROUND
-# ==========================
+# REMOVE BACKGROUND TOOL
 @app.route("/remove-bg", methods=["POST"])
 def remove_bg():
 
@@ -91,10 +89,7 @@ def remove_bg():
         mimetype="image/jpeg"
     )
 
-
-# ==========================
-# ID CROP
-# ==========================
+# ID CROP TOOL
 @app.route("/id-crop", methods=["POST"])
 def id_crop():
 
