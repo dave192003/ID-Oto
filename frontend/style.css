@@ -109,6 +109,8 @@ body {
     padding: clamp(1.5rem, 4vw, 4.5rem);
     display: flex;
     flex-direction: column;
+    justify-self: center;
+    margin-top: 100px;
     border-radius: clamp(12px, 2vw, 20px);
     border: none;
     box-shadow:
