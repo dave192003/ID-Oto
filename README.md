@@ -32,8 +32,6 @@
 
    * Final output is generated and prepared for printing.
 
-## **NOTE:** Im planning to add auto print instead of manual printing
-
 # Prerequisite
 Before running the project, install the following:
 
