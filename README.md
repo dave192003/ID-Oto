@@ -42,7 +42,7 @@ Before running the project, install the following:
 
 # N8N WORKFLOW
 -Attached file below is the n8n workflow. <br>
-[ID-Oto N8N Workflow](<../ID-Oto Workflow.json>)<br>
+[ID-Oto N8N Workflow](../ID-Oto Workflow.json)<br>
 
 ## Steps to import ID-Oto workflow on N8N
 -Open your n8n instance in your browser. <br>
