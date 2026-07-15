@@ -10,77 +10,88 @@
 
 <body>
     <main>
-         <!-- HEADER -->
-    <header class="header-section">
-        <!-- COLUMN 1 -->
-        <div class="hero-images-container">
-            <img src="resources/images/images (1).jpg" class="hero-image1">
-            <img src="resources/images/imgBG.jpg" class="hero-image2">
-        </div>
+        <!-- NAVIGATION BAR -->
+        <nav class="navBar-container">
+            <h2>ID-Oto</h2>
 
-        <!-- COLUMN 2 -->
-        <div class="header-container">
-            <h1>ID-Oto</h1>
-            <h2> Automated ID Photo Processor </h2>
-            <h3> <span class="make">MAKE</span> Your Printing ID Service <span class="easier">EASIER</span></h3>
-        </div>
-
-        <!-- COLUMN 3 -->
-        <div class="third-box">
-            <img src = "./resources/images/arrow.png" class = "arrow">
-            <img src="resources/images/id-photo (4).png" class="hero-image">
-        </div>
-    </header>
-
-    <section class="container">
-        <h1>Insert a photo</h1>
-        <!-- UPLOAD BOX -->
-        <label class="upload-box" for="fileInput">
-            Click to Upload Image
-        </label>
-
-        <input type="file" id="fileInput" accept="image/*">
-
-        <!-- PREVIEW -->
-        <div class="preview-section">
-            <!-- CARDS -->
-            <div class="card">
-                <h3>Original</h3>
-                <img class="preview-image" id="originalPreview">
+        </nav>
+        <!-- HEADER -->
+        <header class="header-section">
+            <!-- COLUMN 1 -->
+            <div class="hero-images-container">
+                <img src="resources/images/images (1).jpg" class="hero-image1">
+                <img src="resources/images/imgBG.jpg" class="hero-image2">
             </div>
-            <div class="card">
-                <h3>Processed</h3>
-                <img class="output-preview-image" id="outputPreview">
-            </div>
-        </div>
 
-        <!-- Print layout  -->
-        <div id="printSheet" class="print-sheet"></div>
-        <div class="size-selector">
-            <label>Select ID Size</label>
-            <select id="photoSize">
-                <option value="1x1">1x1</option>
-                <option value="1.5x1.5">1.5 x 1.5</option>
-                <option value="2x2">2x2</option>
-                <option value="passport">Passport</option>
-            </select>
-        </div>
-        <!-- Buttons -->
-        <div class="buttons">
-            <button class="process" onclick="processImage()">
-                Process Image
-            </button>
-            <button class="download" onclick="downloadImage()">
-                Download
-            </button>
-            <button class=" print-button" onclick="printPhotos()">
-                Print Photos
-            </button>
-        </div>
-        <div class="loading" id="status"></div>
-    </section>
+            <!-- COLUMN 2 -->
+            <div class="header-container">
+                <h1>ID-Oto</h1>
+                <h2> Automated ID Photo Processor </h2>
+                <h3> <span class="make">MAKE</span> Your Printing ID Service <span class="easier">EASIER</span></h3>
+            </div>
+
+            <!-- COLUMN 3 -->
+            <div class="third-box">
+                <img src="./resources/images/arrow.png" class="arrow">
+                <img src="resources/images/id-photo (4).png" class="hero-image">
+            </div>
+        </header>
+
+        <section class="container">
+            <h1>Insert a photo</h1>
+            <!-- UPLOAD BOX -->
+            <label class="upload-box" for="fileInput">
+                Click to Upload Image
+            </label>
+
+            <input type="file" id="fileInput" accept="image/*">
+
+            <!-- PREVIEW -->
+            <div class="preview-section">
+                <!-- CARDS -->
+                <div class="card">
+                    <h3>Original</h3>
+                    <img class="preview-image" id="originalPreview">
+                </div>
+                <div class="card">
+                    <h3>Processed</h3>
+                    <img class="output-preview-image" id="outputPreview">
+                </div>
+            </div>
+
+            <!-- Print layout  -->
+            <div id="printSheet" class="print-sheet"></div>
+            <div class="size-selector">
+                <label>Select ID Size</label>
+                <select id="photoSize">
+                    <option value="1x1">1x1</option>
+                    <option value="1.5x1.5">1.5 x 1.5</option>
+                    <option value="2x2">2x2</option>
+                    <option value="passport">Passport</option>
+                </select>
+            </div>
+            <!-- Buttons -->
+            <div class="buttons">
+                <button class="process" id = "process-button" onclick="processImage()">
+                    Process Image
+                </button>
+                <button class="download" onclick="downloadImage()">
+                    Download
+                </button>
+                <button class=" print-button" onclick="printPhotos()">
+                    Print Photos
+                </button>
+            </div>
+            <div class="loading" id="status"></div>
+        </section>
+
+        <!-- footer -->
+        <footer class="footer-container">
+            <p>&copy; 2026 Dave Daryl Lebico. All Rights Reserved.</p>
+        </footer>
     </main>
     <!-- linked script -->
     <script src="script.js"></script>
 </body>
+
 </html>
