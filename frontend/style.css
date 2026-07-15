@@ -364,7 +364,6 @@ button {
     /* removed box shodow */
     .container.active{
         box-shadow: none;
-
     }
 
     .print-sheet {

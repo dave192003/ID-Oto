@@ -1,0 +1,240 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "id-upload",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        128,
+        -320
+      ],
+      "id": "27768798-6200-4ae8-bc2e-cd4d3c47badb",
+      "name": "Webhook",
+      "webhookId": "1f7fa852-beda-476e-899f-c7b4e7e596b3"
+    },
+    {
+      "parameters": {
+        "respondWith": "binary",
+        "responseDataSource": "set",
+        "inputFieldName": "image",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1216,
+        -304
+      ],
+      "id": "bcf91a85-3e6d-4a3e-ad2b-eb53e45e4589",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "552b98f9-715e-4332-8670-5edd0ac7232b",
+              "name": "photoType",
+              "value": "={{$json.body.type}}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        -320
+      ],
+      "id": "f44c15dc-f230-4ef3-a118-2fae299260c5",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://python-worker:8000/remove-bg",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "image",
+              "inputDataFieldName": "image"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "image"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        512,
+        -320
+      ],
+      "id": "b4d95dda-5353-42ee-a1ac-46a6d9ab71c1",
+      "name": "RemoveBG"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://python-worker:8000/enhance",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "type",
+              "value": "={{ $json.photoType }}"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "image",
+              "inputDataFieldName": "image"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "image"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        752,
+        -320
+      ],
+      "id": "5472643e-9494-4fa3-afae-7e53feacabf2",
+      "name": "Enhance Image"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://python-worker:8000/id-crop",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "image",
+              "inputDataFieldName": "image"
+            },
+            {
+              "name": "type",
+              "value": "={{$json.photoType}}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "image"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        992,
+        -320
+      ],
+      "id": "a9f87e16-d676-4819-b82e-b37b0f66d773",
+      "name": "Crop"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "RemoveBG",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RemoveBG": {
+      "main": [
+        [
+          {
+            "node": "Enhance Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enhance Image": {
+      "main": [
+        [
+          {
+            "node": "Crop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crop": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "d2664fc9-bb56-4498-b30e-4eb8bb626cab",
+  "meta": {
+    "instanceId": "c5b98dc89e0d819e81cc717eef0b72ddb4ba1b56fef1f853a55e9514bd13e191"
+  },
+  "nodeGroups": [],
+  "id": "lCad9xSTJEkvwxaT",
+  "tags": []
+}
