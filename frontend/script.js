@@ -11,6 +11,7 @@ input.addEventListener("change", (e) => {
 }
 );
 
+const container = document.querySelector(".container");
 // Process image function
 async function processImage() {
     // checks if user uploaded an image
@@ -39,6 +40,12 @@ async function processImage() {
         document.getElementById("outputPreview").src = processedImageURL;
         status.innerText = "Processing complete";
         generatePrintLayout();
+
+        const processedDone = document.getElementById("process-button");
+        
+        processedDone.classList.add("active");
+        processedDone.disabled = true;
+        container.classList.add("active");
     }
 
     catch (error) {
@@ -88,6 +95,9 @@ function generatePrintLayout() {
         sheet.appendChild(img);
     }
 }
+
+
+
 
 function downloadImage() {
     if (!processedBlob) {
