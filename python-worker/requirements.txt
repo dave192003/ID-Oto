@@ -1,6 +1,6 @@
 flask
 rembg
 pillow
-onnxruntime
 numpy
-opencv-python-headless
+opencv-python-headless==4.10.0.84
+onnxruntime
