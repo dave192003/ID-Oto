@@ -309,13 +309,14 @@ input {
 
 .privacy-info-container p{
     font-size: clamp(10px, 16vw, 30px);
+    color: rgb(30, 30, 190);
 }
 
 .privacy-info-container img{
     background: transparent;
-    width: 2%;
+    width: 3%;
     padding: 0;
-    height: 20px;
+    height: 25px;
 }
 
 
