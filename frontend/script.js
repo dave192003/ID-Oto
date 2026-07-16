@@ -1,23 +1,38 @@
-// variables
+// Variables
 let selectedFile = null;
 let processedBlob = null;
 let processedImageURL = null;
 
-const input = document.getElementById("fileInput");
-input.addEventListener("change", (e) => {
+const imageInput = document.getElementById("imageInput");
+const uploadArea = document.getElementById("uploadArea");
+const previewContainer = document.getElementById("previewContainer");
+
+imageInput.addEventListener("change", (e) => {
+
     selectedFile = e.target.files[0];
+
+    if (selectedFile) {
+        uploadArea.classList.add("done");
+    }
+
+    previewContainer.classList.add("active");
+
+    // Show original image
     const url = URL.createObjectURL(selectedFile);
     document.getElementById("originalPreview").src = url;
-}
-);
 
-const container = document.querySelector(".container");
+    // Hide upload area
+    uploadArea.classList.add("done");
+
+    // Show preview container
+    previewContainer.classList.add("active");
+
+});
 // Process image function
 async function processImage() {
     // checks if user uploaded an image
-    if (!selectedFile) {
-        alert("Upload image first");
-        return;
+    if (selectedFile) {
+        uploadArea.classList.add("done");
     }
     const status = document.getElementById("status");
     status.innerText = "Processing image...";
@@ -42,10 +57,10 @@ async function processImage() {
         generatePrintLayout();
 
         const processedDone = document.getElementById("process-button");
-        
+
         processedDone.classList.add("active");
         processedDone.disabled = true;
-        container.classList.add("active");
+        previewContainer.classList.add("active");
     }
 
     catch (error) {

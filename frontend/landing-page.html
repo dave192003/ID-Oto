@@ -13,78 +13,121 @@
         <!-- NAVIGATION BAR -->
         <nav class="navBar-container">
             <h2>ID-Oto</h2>
-
+            <div class="nav-box">
+                <ul>
+                    <li>Feature</li>
+                    <li>How it Works</li>
+                    <li>About</li>
+                    <li>Contact</li>
+                </ul>
+            </div>
         </nav>
-        <!-- HEADER -->
-        <header class="header-section">
-            <!-- COLUMN 1 -->
-            <div class="hero-images-container">
-                <img src="resources/images/images (1).jpg" class="hero-image1">
-                <img src="resources/images/imgBG.jpg" class="hero-image2">
-            </div>
 
-            <!-- COLUMN 2 -->
-            <div class="header-container">
-                <h1>ID-Oto</h1>
+        <section class="left-section">
+            <!-- HEADER -->
+            <header class="header-container">
+
+                <div class="top-header-container">
+                    <ul>
+                        <li> Ai Powered</li>
+                        <li> Fast</li>
+                        <li> Easy to Use</li>
+                    </ul>
+
+                </div>
+                <h1 class="name-header">ID-Oto</h1>
                 <h2> Automated ID Photo Processor </h2>
-                <h3> <span class="make">MAKE</span> Your Printing ID Service <span class="easier">EASIER</span></h3>
-            </div>
-
-            <!-- COLUMN 3 -->
-            <div class="third-box">
-                <img src="./resources/images/arrow.png" class="arrow">
-                <img src="resources/images/id-photo (4).png" class="hero-image">
-            </div>
-        </header>
-
-        <section class="container">
-            <h1>Insert a photo</h1>
-            <!-- UPLOAD BOX -->
-            <label class="upload-box" for="fileInput">
-                Click to Upload Image
-            </label>
-
-            <input type="file" id="fileInput" accept="image/*">
-
-            <!-- PREVIEW -->
-            <div class="preview-section">
-                <!-- CARDS -->
-                <div class="card">
-                    <h3>Original</h3>
-                    <img class="preview-image" id="originalPreview">
+                <h3> MAKE Your Printing ID Service <span class="easier">EASIER</span></h3>
+                <div class="info-header">
+                    <p>Upload a photo and let ID-Oto automatically remove the background, crop, and generate ID photos
+                        for you. </p>
                 </div>
-                <div class="card">
-                    <h3>Processed</h3>
-                    <img class="output-preview-image" id="outputPreview">
-                </div>
+            </header>
+
+            <!-- Upload area -->
+            <div class="upload-area" id="uploadArea">
+
+                <label for="imageInput" class="upload-card" id="file-input">
+
+                    <div class="upload-icon">
+                        <img src="/frontend/resources/images/image-.png" alt="Upload Icon">
+                    </div>
+
+                    <h2>Upload Your Photo</h2>
+
+                    <p class="upload-description">
+                        Drag &amp; drop or click to upload
+                    </p>
+
+                    <span class="choose-file-btn">
+                        <i class="fa-solid fa-upload"></i>
+                        Choose File
+                    </span>
+
+                    <p class="file-info">
+                        JPG, PNG or JPEG • Max size 10MB
+                    </p>
+
+                </label>
+
+                <input type="file" id="imageInput" accept="image/png, image/jpeg, image/jpg" hidden>
+
             </div>
 
-            <!-- Print layout  -->
-            <div id="printSheet" class="print-sheet"></div>
-            <div class="size-selector">
-                <label>Select ID Size</label>
-                <select id="photoSize">
-                    <option value="1x1">1x1</option>
-                    <option value="1.5x1.5">1.5 x 1.5</option>
-                    <option value="2x2">2x2</option>
-                    <option value="passport">Passport</option>
-                </select>
+            <section class="container" id="previewContainer">
+                <!-- PREVIEW BOX -->
+                <div class="preview-section">
+                    <!-- CARDS -->
+                    <div class="card">
+                        <h3>Original</h3>
+                        <img class="preview-image" id="originalPreview">
+                    </div>
+                    <div class="card">
+                        <h3>Processed</h3>
+                        <img class="output-preview-image" id="outputPreview">
+                    </div>
+                </div>
+
+                <!-- Print layout  -->
+                <div id="printSheet" class="print-sheet"></div>
+                <div class="size-selector">
+                    <label>Select ID Size</label>
+                    <select id="photoSize">
+                        <option value="1x1">1x1</option>
+                        <option value="1.5x1.5">1.5 x 1.5</option>
+                        <option value="2x2">2x2</option>
+                        <option value="passport">Passport</option>
+                    </select>
+                </div>
+                <!-- Buttons -->
+                <div class="buttons">
+                    <button class="process" id="process-button" onclick="processImage()">
+                        Process Image
+                    </button>
+                    <button class="download" onclick="downloadImage()">
+                        Download
+                    </button>
+                    <button class=" print-button" onclick="printPhotos()">
+                        Print Photos
+                    </button>
+                </div>
+                <div class="loading" id="status"></div>
+            </section>
+
+            <div class="privacy-info-container">
+                <img src="resources/images/padlock.png">
+                <p>Your photos are secure and private. They are not stored.</p>
             </div>
-            <!-- Buttons -->
-            <div class="buttons">
-                <button class="process" id = "process-button" onclick="processImage()">
-                    Process Image
-                </button>
-                <button class="download" onclick="downloadImage()">
-                    Download
-                </button>
-                <button class=" print-button" onclick="printPhotos()">
-                    Print Photos
-                </button>
-            </div>
-            <div class="loading" id="status"></div>
+
         </section>
 
+        <section class="right-section">
+            <div class="hero-image-container">
+                <img src="resources/images/images (1).jpg" class="image1">
+                <img src="resources/images/arrow.png" class="arrow">
+                <img src="resources/images/id-photo (4).png" class="image2">
+            </div>
+        </section>
         <!-- footer -->
         <footer class="footer-container">
             <p>&copy; 2026 Dave Daryl Lebico. All Rights Reserved.</p>
