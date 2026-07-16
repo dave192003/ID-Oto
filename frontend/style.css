@@ -319,6 +319,34 @@ input {
     height: 25px;
 }
 
+/* fEATURES iNFO */
+.feature-info-section{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    grid-column: 1/ -1;
+    gap: 10rem;
+    padding:  0 8rem;
+    background: white;
+    justify-self: center; 
+    border-radius: 30px;
+
+}
+
+.feature-info-section .box{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 15%
+    
+}
+
+.feature-info-section .box img{
+    background: transparent;
+    width: 40%
+}
+
 
 /* PREVIEW SECTION */
 .preview-section {
