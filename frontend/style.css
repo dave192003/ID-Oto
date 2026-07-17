@@ -335,11 +335,16 @@ input {
 
 .feature-info-section .box{
     display: flex;
+    gap: 30px;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 15%
-    
+    width: 15%  
+
+}
+
+.feature-info-section .box h3{
+    font-size: clamp(12px, 10vw, 30px);
 }
 
 .feature-info-section .box img{
@@ -499,6 +504,10 @@ button {
     /*Not included parts for printing */
     h1,
     .upload-box,
+    .left-section .header-container,
+    .right-section,
+    .feature-info-section,
+    .privacy-info-container,
     .preview-section,
     .header-section,
     .size-selector,
