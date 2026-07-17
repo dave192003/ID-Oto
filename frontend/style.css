@@ -77,7 +77,15 @@ main {
 }
 
 .nav-box li {
-    font-size: clamp(15px, 10vw, 30px);
+    font-size: clamp(15px, 2vw, 30px);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.nav-box li:hover {
+    background: var(--primary);
+    color: white;
 }
 
 /* HEADER */
@@ -258,7 +266,7 @@ main {
     font-size: 2rem;
     font-weight: 600;
     cursor: pointer;
-    transition: .3s;
+    transition: transform 0.3s ease, background-color 0.3s ease;
     box-shadow:
         0 6px 12px rgba(0, 0, 0, .12),
         0 10px 24px rgba(0, 0, 0, .12);
@@ -266,6 +274,7 @@ main {
 
 .upload-area .choose-file-btn:hover {
     background: var(--primary-hover);
+    transform: scale(1.05);
 }
 
 .upload-area .file-info {
@@ -296,23 +305,24 @@ input {
 }
 
 /* privacy info */
-.privacy-info-container{
+.privacy-info-container {
     grid-column: 1;
-    display: flex; 
+    display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     flex-direction: row;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
-.privacy-info-container p{
+.privacy-info-container p {
     font-size: clamp(10px, 16vw, 30px);
     color: rgb(30, 30, 190);
 }
 
-.privacy-info-container img{
+.privacy-info-container img {
     background: transparent;
     width: 3%;
     padding: 0;
@@ -320,34 +330,33 @@ input {
 }
 
 /* fEATURES iNFO */
-.feature-info-section{
+.feature-info-section {
     display: flex;
     flex-direction: row;
     width: 90%;
     grid-column: 1/ -1;
     gap: 10rem;
-    padding:  0 8rem;
+    padding: 0 8rem;
     background: white;
-    justify-self: center; 
+    justify-self: center;
     border-radius: 30px;
 
 }
 
-.feature-info-section .box{
+.feature-info-section .box {
     display: flex;
     gap: 30px;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 15%  
-
+    width: 15%
 }
 
-.feature-info-section .box h3{
+.feature-info-section .box h3 {
     font-size: clamp(12px, 10vw, 30px);
 }
 
-.feature-info-section .box img{
+.feature-info-section .box img {
     background: transparent;
     width: 40%
 }
